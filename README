@@ -1,0 +1,29 @@
+This is a puppet module for installing, configuring and starting MYSQL Server and deploying databases and user accounts.
+
+NOTE: This module was mainly tested on RHEL/CentOS 5 using puppet 2.6.x
+
+* Requirements:
+- mysql, mysql-server RPM's availble via Yum repository.
+- puppet ( 2.6+ recommended) installed on all servers
+
+Usage:
+1. Define the following in mysql::params:
+	- Mysql server root user password
+2. Add the required classes to nodes in pupppet
+3. Run puppet on the rest of the nodes
+
+Example usage:
+
+node "localhost.localdomain" {
+        
+	#This installs the mysql and mysql server software.
+	include mysql::server
+
+	#This creates the user candy and the databbase 
+        mysql::populate{'testdatabase':
+                user         => 'bob',
+                userpass     => 'laser#1',
+                databasename => 'testdatabase',
+        }
+}
+

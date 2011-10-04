@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS <%= databasename  %>; 
+GRANT USAGE ON *.* to <%= user %>@localhost identified by '<%= userpass %>';
+GRANT ALL PRIVILEGES ON <%= databasename  %>.* to <%= user %>@localhost;
